@@ -1,0 +1,15 @@
+# Format code automatically on pre-commit
+#
+# Setup instructions:
+# brew install lefthook
+# lefthook install
+pre-commit:
+  commands:
+    lint:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn lint:fix
+    tailwind:
+      glob: "*.{js,ts,jsx,tsx,css}"
+      run: |
+        yarn tw:build
+        git add styles/tailwind.css

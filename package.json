@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:fix": "yarn prettier --write .",
+    "tw": "tailwindcss -i styles/index.css -o styles/tailwind.css --watch",
+    "tw:build": "tailwindcss -i styles/index.css -o styles/tailwind.css"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.2.4"
+  }
+}
