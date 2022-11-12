@@ -9,9 +9,12 @@
     "tw:build": "tailwindcss -i styles/index.css -o styles/tailwind.css"
   },
   "dependencies": {
+    "firebase": "^9.14.0",
     "next": "latest",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-loader-spinner": "^5.3.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
