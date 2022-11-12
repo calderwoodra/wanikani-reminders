@@ -21,8 +21,7 @@ export default function Button({
   if (disabled) {
     buttonStyle = "text-secondary-text bg-disabled-gray";
   } else if (!secondaryButtonStyle) {
-    buttonStyle =
-      "text-primary-main-text px-6 py-4 rounded-lg bg-secondary-main min-w-[10rem]";
+    buttonStyle = "text-primary-main-text px-6 py-4 rounded-lg bg-secondary-main min-w-[10rem]";
   }
 
   return (
@@ -36,13 +35,7 @@ export default function Button({
       >
         {loading && (
           <div className={"py-1"}>
-            <TailSpin
-              radius={"2"}
-              wrapperClass={"justify-center"}
-              height={"20"}
-              width={"20"}
-              color={"#FFFFFF"}
-            />
+            <TailSpin radius={"2"} wrapperClass={"justify-center"} height={"20"} width={"20"} color={"#FFFFFF"} />
           </div>
         )}
         {!loading && !!text && <Text style={TextStyle.button}>{text}</Text>}

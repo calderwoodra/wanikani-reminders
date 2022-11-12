@@ -20,11 +20,7 @@ export const Card = ({
 
   return (
     <>
-      {topDivider && (
-        <div
-          className={"w-full h-[1px] bg-disabled-gray my-6 block md:hidden"}
-        />
-      )}
+      {topDivider && <div className={"w-full h-[1px] bg-disabled-gray my-6 block md:hidden"} />}
       <div
         className={classNames(
           className,
@@ -34,11 +30,7 @@ export const Card = ({
       >
         {children}
       </div>
-      {bottomDivider && (
-        <div
-          className={"w-full h-[1px] bg-disabled-gray my-6 block md:hidden"}
-        />
-      )}
+      {bottomDivider && <div className={"w-full h-[1px] bg-disabled-gray my-6 block md:hidden"} />}
     </>
   );
 };

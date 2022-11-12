@@ -19,8 +19,7 @@ export default function LinkButton({
     if (flat) {
       buttonStyle = "";
     } else {
-      buttonStyle =
-        "text-primary-main-text px-8 py-4 rounded bg-secondary-main";
+      buttonStyle = "text-primary-main-text px-8 py-4 rounded bg-secondary-main";
     }
   } else {
     if (flat) {
@@ -49,14 +48,7 @@ export default function LinkButton({
         <Text style={TextStyle.button}>{text}</Text>
       </a>
       <Link href={href}>
-        <button
-          className={classNames(
-            buttonStyle,
-            className,
-            "cursor-pointer",
-            linkVisible
-          )}
-        >
+        <button className={classNames(buttonStyle, className, "cursor-pointer", linkVisible)}>
           <Text style={TextStyle.button}>{text}</Text>
         </button>
       </Link>

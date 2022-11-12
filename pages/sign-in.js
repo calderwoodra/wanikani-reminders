@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { RecaptchaVerifier } from "firebase/auth";
 import { firebaseAuth, signIn } from "../src/firebase/auth";
+import { firebaseApp } from "../src/firebase/init";
 
 function isValidPhoneNumber(phoneNumber) {
   return phoneNumber.replace(/[^0-9]/g, "").length === 10;
@@ -22,6 +23,12 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (!!firebaseAuth.currentUser) {
+      router.push("/reminders");
+    }
+  }, [firebaseAuth.currentUser]);
+
   function onSignInClicked() {
     setError("");
     setLoading(true);
@@ -29,11 +36,11 @@ export default function SignUpPage() {
     if (showCode) {
       showCode
         .confirm(code)
-        .then((result) => {
+        .then(result => {
           const user = result.user;
           alert("Signed in as " + user.phoneNumber);
         })
-        .catch((error) => {
+        .catch(error => {
           setError("Failed to sign-in");
         })
         .finally(() => {
@@ -42,10 +49,10 @@ export default function SignUpPage() {
       return;
     }
     signIn(phone)
-      .then((confirmationResult) => {
+      .then(confirmationResult => {
         setShowCode(confirmationResult);
       })
-      .catch((error) => {
+      .catch(error => {
         setError("Failed to find account");
         window.recaptchaVerifier.render().then(function (widgetId) {
           grecaptcha.reset(widgetId);
@@ -63,13 +70,13 @@ export default function SignUpPage() {
         "recaptcha-container",
         {
           size: "normal",
-          callback: (response) => {
+          callback: response => {
             setAllowSignIn(true);
           },
         },
         firebaseAuth
       );
-      window.recaptchaVerifier.render().then((widgetId) => {
+      window.recaptchaVerifier.render().then(widgetId => {
         window.recaptchaWidgetId = widgetId;
       });
     }
@@ -103,9 +110,7 @@ export default function SignUpPage() {
         <Card className={"max-w-lg"}>
           <div className={"flex flex-col justify-center items-center"}>
             <Text style={TextStyle.med_header}>Login to account</Text>
-            <Text style={TextStyle.paragraph}>
-              Enter your phone number to login or create a new account.
-            </Text>
+            <Text style={TextStyle.paragraph}>Enter your phone number to login or create a new account.</Text>
             <Input
               label={"Phone number"}
               outerClassName={"mt-4"}

@@ -15,13 +15,12 @@ export const Input = ({
   outerClassName = "",
   ...props
 }) => {
-  const border =
-    "border-secondary-text border-[1px] focus:border-secondary-main focus:shadow-outline";
+  const border = "border-secondary-text border-[1px] focus:border-secondary-main focus:shadow-outline";
   const errorBorder = !!error ? "!border-red-600" : "";
   const shape = "w-full px-3 py-2 rounded-lg";
 
   const updatedType = type === "number" ? "text" : type;
-  const onChangeHandler = (e) => {
+  const onChangeHandler = e => {
     if (type === "number") {
       const value = e.target.value;
       onChange(value.replace(/[^0-9.]/g, ""));
@@ -31,35 +30,24 @@ export const Input = ({
   };
 
   return (
-    <label
-      className={classNames(outerClassName, "flex flex-col w-full md:w-72")}
-    >
+    <label className={classNames(outerClassName, "flex flex-col w-full md:w-72")}>
       {!!label && <Text style={TextStyle.title}>{label}</Text>}
       <input
         id={id}
         placeholder={placeholder}
         value={value}
-        onWheel={(e) => {
+        onWheel={e => {
           if (type === "number") {
             e.target.blur();
           }
         }}
         onChange={onChangeHandler}
-        className={classNames(
-          className,
-          border,
-          shape,
-          errorBorder,
-          "bg-white"
-        )}
+        className={classNames(className, border, shape, errorBorder, "bg-white")}
         type={updatedType}
         {...props}
       />
       {!!error && (
-        <Text
-          style={TextStyle.fine_print}
-          className={"text-red-600 font-semibold mt-[1px]"}
-        >
+        <Text style={TextStyle.fine_print} className={"text-red-600 font-semibold mt-[1px]"}>
           {"" + error}
         </Text>
       )}

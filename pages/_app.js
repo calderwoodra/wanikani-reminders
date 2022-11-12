@@ -13,15 +13,11 @@ export default class MyApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
-    const description =
-      "Get regular reminders about your WaniKani queue, sent to you via WhatsApp.";
+    const description = "Get regular reminders about your WaniKani queue, sent to you via WhatsApp.";
     return (
       <React.Fragment>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
           {/* Standard Metadata */}
           <title>WaniKani Reminders</title>
