@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBUIPSC68aqhALZS2N3Y_Hbcwmt2UkYuMk",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "wanikani-reminders-3f47c.firebaseapp.com",
   databaseURL: "https://wanikani-reminders-3f47c-default-rtdb.firebaseio.com",
   projectId: "wanikani-reminders-3f47c",

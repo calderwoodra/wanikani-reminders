@@ -1,9 +1,13 @@
-import { ref, onValue } from "firebase/database";
-import { firebaseDb } from "../firebase/db";
+import { getDoc } from "firebase/firestore";
 
-export function getReminders() {
-  const starCountRef = ref(firebaseDb, "users/" + "reminders/" + postId + "/starCount");
-  // return
+export async function getReminders(user) {
+  return Promise.all(user.reminders.map(r => getDoc(r))).then(reminders => {
+    const results = [];
+    for (const reminder of reminders) {
+      if (reminder.exists()) {
+        results.push(reminder.data());
+      }
+    }
+    return results;
+  });
 }
-
-export function createReminder() {}
