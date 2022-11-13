@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { firebaseAuth } from "../src/firebase/auth";
+import { firebaseAuth } from "src/firebase/auth";
 import { useRouter } from "next/router";
-import { getUser, updateUser } from "../src/functions/user";
-import { Section } from "../src/components/Section";
-import { Card } from "../src/components/Card";
-import { Text, TextStyle } from "../src/components/text/Text";
-import { Input } from "../src/components/forms/input";
+import { getUser, updateUser } from "src/functions/user";
+import { Section } from "src/components/Section";
+import { Card } from "src/components/Card";
+import { Text, TextStyle } from "src/components/text/Text";
+import { Input } from "src/components/forms/input";
 import { TailSpin } from "react-loader-spinner";
-import Button from "../src/components/buttons/Button";
+import Button from "src/components/buttons/Button";
 
 const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
 

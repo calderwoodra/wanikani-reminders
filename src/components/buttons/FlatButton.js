@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, TextStyle } from "../text/Text";
-import { classNames } from "../helpers/classNames";
+import { Text, TextStyle } from "src/components/text/Text";
+import { classNames } from "src/components/helpers/classNames";
 
 export default function FlatButton({ className, outerStyle, type, text, children, onClick, textPosition, id = "" }) {
   const buttonStyle = "min-w-[10rem] px-6 rounded-lg text-secondary-main";

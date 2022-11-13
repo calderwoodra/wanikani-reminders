@@ -1,6 +1,6 @@
 import React from "react";
-import { classNames } from "../helpers/classNames";
-import { Text, TextStyle } from "../text/Text";
+import { classNames } from "src/components/helpers/classNames";
+import { Text, TextStyle } from "src/components/text/Text";
 import PropTypes from "prop-types";
 
 export const Input = ({
