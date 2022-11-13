@@ -1,5 +1,5 @@
 import { getAuth, signInWithPhoneNumber } from "firebase/auth";
-import { firebaseApp } from "./init";
+import { firebaseApp } from "/src/firebase/init";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 

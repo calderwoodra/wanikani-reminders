@@ -1,12 +1,12 @@
 import { Section } from "/src/components/Section";
-import { Card } from "src/components/Card";
-import { Text, TextStyle } from "src/components/text/Text";
-import { Input } from "src/components/forms/input";
-import Button from "src/components/buttons/Button";
+import { Card } from "/src/components/Card";
+import { Text, TextStyle } from "/src/components/text/Text";
+import { Input } from "/src/components/forms/input";
+import Button from "/src/components/buttons/Button";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { RecaptchaVerifier } from "firebase/auth";
-import { firebaseAuth, signIn } from "src/firebase/auth";
+import { firebaseAuth, signIn } from "/src/firebase/auth";
 
 function isValidPhoneNumber(phoneNumber) {
   return phoneNumber.replace(/[^0-9]/g, "").length === 10;

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, TextStyle } from "src/components/text/Text";
-import { classNames } from "src/components/helpers/classNames";
+import { Text, TextStyle } from "/src/components/text/Text";
+import { classNames } from "/src/components/helpers/classNames";
 import { TailSpin } from "react-loader-spinner";
 
 export default function Button({

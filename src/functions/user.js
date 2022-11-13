@@ -1,6 +1,6 @@
-import { usersRef } from "src/firebase/db";
+import { usersRef } from "/src/firebase/db";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { firebaseAuth } from "src/firebase/auth";
+import { firebaseAuth } from "/src/firebase/auth";
 
 export async function getUser() {
   if (!firebaseAuth.currentUser) {

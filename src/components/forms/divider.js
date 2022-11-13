@@ -1,5 +1,5 @@
 import React from "react";
-import { classNames } from "src/components/helpers/classNames";
+import { classNames } from "/src/components/helpers/classNames";
 
 export const Divider = ({ className, margin = true }) => {
   return <div className={classNames("w-full h-[2px] bg-disabled-gray", className, margin ? "my-4" : "")} />;

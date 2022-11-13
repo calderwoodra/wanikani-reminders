@@ -1,6 +1,6 @@
 import React from "react";
-import { classNames } from "src/components/helpers/classNames";
-import { Text, TextStyle } from "src/components/text/Text";
+import { classNames } from "/src/components/helpers/classNames";
+import { Text, TextStyle } from "/src/components/text/Text";
 
 export const Checkbox = ({ id, value, label, onChange, outerClassName, className }) => {
   const border = "border-[1px] focus:border-primary-light focus:shadow-outline";
