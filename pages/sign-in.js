@@ -40,7 +40,7 @@ export default function SignUpPage() {
           alert("Signed in as " + user.phoneNumber);
         })
         .catch(error => {
-          setError("Failed to sign-in");
+          setError("Failed to sign-in. " + error);
         })
         .finally(() => {
           setLoading(false);
@@ -52,7 +52,7 @@ export default function SignUpPage() {
         setShowCode(confirmationResult);
       })
       .catch(error => {
-        setError("Failed to find account");
+        setError("Failed to find account. " + error);
         window.recaptchaVerifier.render().then(function (widgetId) {
           grecaptcha.reset(widgetId);
           setAllowSignIn(false);
