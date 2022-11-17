@@ -28,7 +28,7 @@ export default function Button({
     <div className={outerStyle}>
       <button
         id={id}
-        disabled={disabled}
+        disabled={disabled || loading}
         type={type}
         className={classNames(className, buttonStyle, structureStyle)}
         onClick={onClick}

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import App from "next/app";
 import Head from "next/head";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
@@ -7,7 +6,7 @@ import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import "/styles/index.css";
 import "/styles/tailwind.css";
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
   const description = "Get regular reminders about your WaniKani queue, sent to you via WhatsApp.";
@@ -26,5 +25,3 @@ function MyApp({ Component, pageProps }) {
     </React.Fragment>
   );
 }
-
-export default MyApp;

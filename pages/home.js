@@ -13,11 +13,12 @@ const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F
 
 const RemindersPage = () => {
   const router = useRouter();
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [apiToken, setApiToken] = useState(null);
-  const [threshold, setThreshold] = useState(null);
-  const [thresholdError, setThresholdError] = useState(null);
-  const [apiTokenError, setApiTokenError] = useState(null);
+  const [apiToken, setApiToken] = useState("");
+  const [threshold, setThreshold] = useState("");
+  const [thresholdError, setThresholdError] = useState("");
+  const [apiTokenError, setApiTokenError] = useState("");
 
   const user = useUser();
   const supabaseClient = useSupabaseClient();
@@ -27,7 +28,32 @@ const RemindersPage = () => {
       router.push("/log-in");
       return;
     }
-    // supabaseClient.from('')
+
+    supabaseClient.from('users').select('*').eq('user_id', user.id).single()
+        .then((data) => {
+          // Check if the user doesn't exist yet
+          if (data.status === 406) {
+            return supabaseClient.from('users').insert([{ user_id: user.id, api_token: null }])
+                .then((_) => supabaseClient.from('users').select('*').eq('user_id', user.id).single())
+          }
+          return data;
+        })
+        .then(({ data, error, status }) => {
+          // Check for other errors
+          if (!!error && status >= 400) {
+            setError(error.message);
+            throw error;
+          }
+          console.log(data);
+          return data;
+        })
+        .then((data) => {
+          setApiToken(data.api_token ?? "");
+          setThreshold(data.threshold);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
   }, [user]);
 
   if (!user || loading) {
@@ -42,19 +68,6 @@ const RemindersPage = () => {
     );
   }
 
-  useEffect(() => {
-    if (!user) {
-      getUser().then(user => {
-        if (!user) return;
-
-        setUser(user);
-        setApiToken(user.api_token);
-        setThreshold(user.threshold);
-        setLoading(false);
-      });
-    }
-  }, []);
-
   function onSaveClicked() {
     setThresholdError(null);
     setApiTokenError(null);
@@ -68,11 +81,18 @@ const RemindersPage = () => {
       return;
     }
 
-    setUser(null);
     setLoading(true);
-    updateUser(apiToken, threshold)
-      .then(setUser)
-      .finally(() => setLoading(false));
+    supabaseClient.from('users').update({ api_token: apiToken, threshold: threshold }).eq('user_id', user.id)
+        .then(({ data, error, status }) => {
+          if (!!error && status >= 400) {
+            setError(error.message);
+            throw error;
+          }
+          return data;
+        })
+        .finally(() => {
+          setLoading(false);
+        });
   }
 
   return (
@@ -115,6 +135,9 @@ const RemindersPage = () => {
               onClick={onSaveClicked}
             />
           </div>
+          <Text style={TextStyle.title} className={"text-end text-red-600"}>
+            {error}
+          </Text>
         </Card>
       </div>
     </Section>

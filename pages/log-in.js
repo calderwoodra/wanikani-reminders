@@ -5,8 +5,6 @@ import { Input } from "/src/components/forms/input";
 import Button from "/src/components/buttons/Button";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { RecaptchaVerifier } from "firebase/auth";
-import { firebaseAuth, signIn } from "/src/firebase/auth";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 
 function isValidPhoneNumber(phoneNumber) {
