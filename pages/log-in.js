@@ -38,24 +38,24 @@ export default function SignUpPage() {
     phoneNumber = "+1" + phoneNumber;
 
     if (showCode) {
-      supabaseClient.auth.verifyOtp({ phone: phoneNumber, token: code, type: "sms" })
-        .then((data) => {
-          if (!data.error) return;
-          setError(data.error + "");
-          setLoading(false);
-        });
+      supabaseClient.auth.verifyOtp({ phone: phoneNumber, token: code, type: "sms" }).then(data => {
+        if (!data.error) return;
+        setError(data.error + "");
+        setLoading(false);
+      });
       return;
     }
 
-    supabaseClient.auth.signInWithOtp({ phone: phoneNumber })
-        .then(({ user, error }) => {
-          if (error) {
-            setError(error + "");
-            return;
-          }
-          setShowCode(true)
-        })
-        .finally(() => setLoading(false));
+    supabaseClient.auth
+      .signInWithOtp({ phone: phoneNumber })
+      .then(({ user, error }) => {
+        if (error) {
+          setError(error + "");
+          return;
+        }
+        setShowCode(true);
+      })
+      .finally(() => setLoading(false));
   }
 
   function isDisabled() {

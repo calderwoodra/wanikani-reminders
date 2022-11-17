@@ -1,4 +1,4 @@
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getUser, updateUser } from "/src/functions/user";
@@ -32,13 +32,13 @@ const RemindersPage = () => {
 
   if (!user || loading) {
     return (
-        <Section outerClassName={"bg-blue-200 h-screen"} innerClassName={"px-4"}>
-          <div className={"flex flex-col h-screen justify-center items-center"}>
-            <Card className={"max-w-lg"}>
-              <TailSpin radius={"2"} wrapperClass={"justify-center"} height={"20"} width={"20"} color={"#063970"} />
-            </Card>
-          </div>
-        </Section>
+      <Section outerClassName={"bg-blue-200 h-screen"} innerClassName={"px-4"}>
+        <div className={"flex flex-col h-screen justify-center items-center"}>
+          <Card className={"max-w-lg"}>
+            <TailSpin radius={"2"} wrapperClass={"justify-center"} height={"20"} width={"20"} color={"#063970"} />
+          </Card>
+        </div>
+      </Section>
     );
   }
 
