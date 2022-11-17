@@ -9,6 +9,9 @@
     "tw:build": "tailwindcss -i styles/index.css -o styles/tailwind.css"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.5.2",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/supabase-js": "^2.1.0",
     "firebase": "^9.14.0",
     "next": "latest",
     "prop-types": "^15.8.1",

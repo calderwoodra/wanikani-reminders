@@ -14,7 +14,7 @@ export default function Home() {
           <Text style={TextStyle.med_header}>WaniKani Reminders</Text>
           <Text style={TextStyle.body}>A simple app to remind you to do your WaniKani reviews.</Text>
           <div className={"w-full flex justify-end"}>
-            <Button className={"mt-4"} text={"Log in"} onClick={() => router.push("/sign-in")} />
+            <Button className={"mt-4"} text={"Log in"} onClick={() => router.push("/log-in")} />
           </div>
         </Card>
       </div>
