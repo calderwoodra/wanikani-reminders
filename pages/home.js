@@ -1,7 +1,6 @@
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getUser, updateUser } from "/src/functions/user";
 import { Section } from "/src/components/Section";
 import { Card } from "/src/components/Card";
 import { Text, TextStyle } from "/src/components/text/Text";
@@ -29,31 +28,37 @@ const RemindersPage = () => {
       return;
     }
 
-    supabaseClient.from('users').select('*').eq('user_id', user.id).single()
-        .then((data) => {
-          // Check if the user doesn't exist yet
-          if (data.status === 406) {
-            return supabaseClient.from('users').insert([{ user_id: user.id, api_token: null }])
-                .then((_) => supabaseClient.from('users').select('*').eq('user_id', user.id).single())
-          }
-          return data;
-        })
-        .then(({ data, error, status }) => {
-          // Check for other errors
-          if (!!error && status >= 400) {
-            setError(error.message);
-            throw error;
-          }
-          console.log(data);
-          return data;
-        })
-        .then((data) => {
-          setApiToken(data.api_token ?? "");
-          setThreshold(data.threshold);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+    supabaseClient
+      .from("users")
+      .select("*")
+      .eq("user_id", user.id)
+      .single()
+      .then(data => {
+        // Check if the user doesn't exist yet
+        if (data.status === 406) {
+          return supabaseClient
+            .from("users")
+            .insert([{ user_id: user.id, api_token: null }])
+            .then(_ => supabaseClient.from("users").select("*").eq("user_id", user.id).single());
+        }
+        return data;
+      })
+      .then(({ data, error, status }) => {
+        // Check for other errors
+        if (!!error && status >= 400) {
+          setError(error.message);
+          throw error;
+        }
+        console.log(data);
+        return data;
+      })
+      .then(data => {
+        setApiToken(data.api_token ?? "");
+        setThreshold(data.threshold);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [user]);
 
   if (!user || loading) {
@@ -82,17 +87,20 @@ const RemindersPage = () => {
     }
 
     setLoading(true);
-    supabaseClient.from('users').update({ api_token: apiToken, threshold: threshold }).eq('user_id', user.id)
-        .then(({ data, error, status }) => {
-          if (!!error && status >= 400) {
-            setError(error.message);
-            throw error;
-          }
-          return data;
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+    supabaseClient
+      .from("users")
+      .update({ api_token: apiToken, threshold: threshold })
+      .eq("user_id", user.id)
+      .then(({ data, error, status }) => {
+        if (!!error && status >= 400) {
+          setError(error.message);
+          throw error;
+        }
+        return data;
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   return (
