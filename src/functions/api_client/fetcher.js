@@ -16,14 +16,14 @@ export const fetcherPathNoLogging = path => {
 
 export const fetcherNoLogging = (url, headers = {}) => {
   return fetch(url, {
-        credentials: "include",
-        method: "get",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          ...headers,
-        },
-      })
+    credentials: "include",
+    method: "get",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...headers,
+    },
+  })
     .then(res => res.json())
     .then(data => {
       console.log(url);

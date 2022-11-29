@@ -24,31 +24,30 @@ export const postRequest = (url, body, successLogging = true, failureLogging = t
 const _postRequest = (url, body, successLogging, failureLogging) => {
   url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/${url}`;
   return fetch(url, {
-        credentials: "include",
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          jwt: jwtToken,
-        },
-        ...{ body: JSON.stringify(body) },
-    })
-    .then(response => {
-      if (!response.ok) {
-        if (failureLogging) {
-          console.log("Request failed: " + response.status);
-        }
-        return response.json().then(response => Promise.reject(response.error));
+    credentials: "include",
+    method: "post",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      jwt: jwtToken,
+    },
+    ...{ body: JSON.stringify(body) },
+  }).then(response => {
+    if (!response.ok) {
+      if (failureLogging) {
+        console.log("Request failed: " + response.status);
       }
+      return response.json().then(response => Promise.reject(response.error));
+    }
+    if (successLogging) {
+      console.log("response", response);
+    }
+    return response.json().then(response => {
       if (successLogging) {
-        console.log("response", response);
+        console.log(url);
+        console.log("response json", response);
       }
-      return response.json().then(response => {
-        if (successLogging) {
-          console.log(url);
-          console.log("response json", response);
-        }
-        return response.data;
-      });
+      return response.data;
     });
+  });
 };
