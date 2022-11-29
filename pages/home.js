@@ -7,6 +7,7 @@ import { Text, TextStyle } from "/src/components/text/Text";
 import { Input } from "/src/components/forms/input";
 import { TailSpin } from "react-loader-spinner";
 import Button from "/src/components/buttons/Button";
+import { useWaniKaniAssignments } from "/src/functions/wani-kani";
 
 const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
 
@@ -21,6 +22,8 @@ const RemindersPage = () => {
 
   const user = useUser();
   const supabaseClient = useSupabaseClient();
+  const { assignments } = useWaniKaniAssignments(apiToken);
+  console.log(assignments);
 
   useEffect(() => {
     if (!user) {
